@@ -1,14 +1,20 @@
 package pages;
+import org.junit.jupiter.api.Test;
+import wrapper.WrapperTests;
 
-import com.microsoft.playwright.*;
+public class AuthorizationTests extends WrapperTests {
+    @Test
+    void shouldClickButton() {
+        final String name = "Tur123";
+        final String email = "max@gmail.com";
+        final String password = "123";
+        final String baseUrl = "http://users.bugred.ru/";
 
-public class AuthorizationTests {
-    public static void main(String[] args) {
-        try (Playwright playwright = Playwright.create()) {
-            Browser browser = playwright.chromium().launch();
-            Page page = browser.newPage();
-            page.navigate("http://users.bugred.ru/");
-            System.out.println(page.title());
-        }
+        page.navigate(baseUrl);
+        page.getByText("Войти").click();
+        page.fill("//input[@required=''][@name='name']", name);
+        page.fill("//input[@required=''][@name='email']", email);
+        page.fill("//input[@required=''][@name='password']", password);
+        page.getByText("Зарегистрироваться").click();
     }
 }
