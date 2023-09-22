@@ -1,9 +1,6 @@
 package wrapper;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserContext;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -17,10 +14,14 @@ public class WrapperTests {
     public BrowserContext context;
     public Page page;
 
+    public final String adminEmail = "manager@mail.ru";
+    public final String adminPassword = "1";
+    public final String baseUrl = "http://users.bugred.ru/";
+
     @BeforeAll
     static void launchBrowser() {
         playwright = Playwright.create();
-        browser = playwright.chromium().launch();
+        browser = playwright.chromium().launch(new BrowserType.LaunchOptions().setHeadless(false));
     }
 
     @AfterAll
