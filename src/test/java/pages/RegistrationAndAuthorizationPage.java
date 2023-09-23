@@ -1,10 +1,11 @@
 package pages;
 
 import com.microsoft.playwright.Page;
+import io.qameta.allure.Step;
 import org.junit.jupiter.api.DisplayName;
 
 public class RegistrationAndAuthorizationPage {
-    @DisplayName("Registration user")
+    @Step("Registration user")
     public static void regUser(Page page, String name, String email, String password) {
         page.locator("//span[text()='Войти']").click();
         page.fill("//input[@required=''][@name='name']", name);
@@ -12,7 +13,7 @@ public class RegistrationAndAuthorizationPage {
         page.fill("//input[@required=''][@name='password']", password);
         page.locator("//input[@value='Зарегистрироваться']").click();
     }
-    @DisplayName("Authorization user")
+    @Step("Authorization user")
     public static void autUser(Page page, String email, String password) {
         page.locator("//span[text()='Войти']").click();
         page.fill("//input[@name='login']", email);
